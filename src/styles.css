@@ -1,0 +1,11 @@
+* {
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+}
+
+body {
+	background-image: url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/N13e7awhgiljgescq/videoblocks-black-empty-space-with-stars-dark-science-background-with-movement_rrrhaewqg_thumbnail-full01.png);
+	background-repeat: no-repeat;
+	-o-background-size: cover;
+		 background-size: cover;
+}

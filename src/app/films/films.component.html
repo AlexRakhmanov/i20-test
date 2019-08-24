@@ -1,0 +1,40 @@
+<div class="films">
+	<div *ngIf="!films" class="loader"></div>
+
+	<ul class="films__list">
+		<li class="films__list--item" *ngFor="let film of films.results">
+			<span (click)="showModal(film)">{{ film.title }}</span>
+		</li>
+	</ul>
+
+	<div *ngIf="currentFilm" class="films__modal-wrapper">
+    <article class="modal">
+      <header class="modal__header">
+				<h3 class="modal__header--title">{{ currentFilm.title }}</h3>
+        <span
+          class="modal__button modal__button--close"
+          (click)="closeModal()"
+        >
+          X
+        </span>
+      </header>
+      <section class="modal__content">
+        <div class="modal__info">
+          <div class="modal__info--details">
+            <p>Режиссер: {{ currentFilm.director }}</p>
+            <p>Год выпуска: {{ currentFilm.release_date.substr(0, 4) }}</p>
+          </div>
+        </div>
+        <div class="modal__description">
+					<p>Корабли:</p>
+
+					<ul>
+						<li *ngFor="let ship of currentFilm.starships">
+							{{ ship }}
+						</li>
+					</ul>
+        </div>
+      </section>
+    </article>
+  </div>
+</div>
