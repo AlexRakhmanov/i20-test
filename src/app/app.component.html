@@ -1,41 +1,26 @@
-<header class="header">
-	<img 
-		src="https://pngriver.com/wp-content/uploads/2018/04/Download-Star-Wars-Logo-PNG.png"
-		alt="Star Wars"
-		class="header__logo"
-	>
-</header>
+<div class="main__tabs">
+  <input id="tab1" type="radio" name="tabs" checked>
+  <label for="tab1">Фильмы</label>
 
-<main class="main">
-	<div class="main__tabs">
-    <input id="tab1" type="radio" name="tabs" checked>
-    <label for="tab1">Фильмы</label>
- 
-    <input id="tab2" type="radio" name="tabs">
-    <label for="tab2">Персонажи</label>
- 
-    <input id="tab3" type="radio" name="tabs">
-    <label for="tab3">Корабли</label>
- 
-    <section id="content-tab1">
-      <div>
-				<app-films></app-films>
-			</div>
-    </section>  
-    <section id="content-tab2">
-      <div>
-        <app-actors></app-actors>
-			</div>
-    </section> 
-    <section id="content-tab3">
-      <div>
-        <app-ships></app-ships>
-			</div>
-    </section>   
-	</div>
-</main>
+  <input id="tab2" type="radio" name="tabs">
+  <label for="tab2">Персонажи</label>
 
-<footer class="footer">
-	Сделано на Angular.
-	Алексей Рахманов (с) 2019
-</footer>
+  <input id="tab3" type="radio" name="tabs">
+  <label for="tab3">Корабли</label>
+
+  <section id="content-tab1">
+    <div>
+			<app-films></app-films>
+		</div>
+  </section>  
+  <section id="content-tab2">
+    <div>
+      <app-actors></app-actors>
+		</div>
+  </section> 
+  <section id="content-tab3">
+    <div>
+      <app-ships></app-ships>
+		</div>
+  </section>   
+</div>

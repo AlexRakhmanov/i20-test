@@ -4,10 +4,32 @@
 }
 
 body {
-	background-image: url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/N13e7awhgiljgescq/videoblocks-black-empty-space-with-stars-dark-science-background-with-movement_rrrhaewqg_thumbnail-full01.png);
+	background-image: url(assets/img/bg.png);
 	background-repeat: no-repeat;
 	-o-background-size: cover;
 		 background-size: cover;
 	margin: 0;
 	height: 100vh;
+}
+
+/**********************/
+/********Header********/
+/**********************/
+
+.header {
+	text-align: center;
+}
+
+.header__logo {
+	width: 250px;
+}
+
+/**********************/
+/********footer********/
+/**********************/
+
+.footer {
+	text-shadow: yellow 0 0 2px;
+	text-align: center;
+	font-weight: bold;
 }

@@ -1,16 +1,4 @@
 /**********************/
-/********Header********/
-/**********************/
-
-.header {
-	text-align: center;
-}
-
-.header__logo {
-	width: 250px;
-}
-
-/**********************/
 /*********main*********/
 /**********************/
 
@@ -127,14 +115,4 @@
 	.main__tabs > label {
 		padding: 15px;
 	}
-}
-
-/**********************/
-/********footer********/
-/**********************/
-
-.footer {
-	text-shadow: yellow 0 0 2px;
-	text-align: center;
-	font-weight: bold;
 }
