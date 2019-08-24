@@ -1,11 +1,24 @@
 <div class="ships">
 	<div *ngIf="!ships" class="loader"></div>
 
-	<ul class="ships__list">
-		<li class="ships__list--item" *ngFor="let ship of ships">
+	<ul *ngIf="ships" class="ships__list">
+		<li class="ships__list--item" *ngFor="let ship of ships.results">
 			<span (click)="showModal(ship)">{{ ship.name }}</span>
 		</li>
 	</ul>
+
+	<div *ngIf="ships" class="ships__pagination">
+		<span 
+			(click)="fetchPreviousShips(ships.previous)"
+			*ngIf="ships.previous"
+			class="ships__pagination--previous"
+		><< Предыдущая страница</span>
+		<span 
+			(click)="fetchNextShips(ships.next)" 
+			*ngIf="ships.next" 
+			class="ships__pagination--next"
+		>Следующая страница >></span>
+	</div>
 
 	<div *ngIf="currentShip" class="ships__modal-wrapper">
     <article class="modal">

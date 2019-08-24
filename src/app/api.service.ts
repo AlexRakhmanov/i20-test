@@ -17,7 +17,23 @@ export class ApiService {
 		return this.http.get("https://swapi.co/api/people/");
 	}
 
+	fetchPreviousActors(previousLink): Observable<Object> {
+		return this.http.get(previousLink);
+	}
+
+	fetchNextActors(nextLink): Observable<Object> {
+		return this.http.get(nextLink);
+	}
+
 	fetchShips(): Observable<Object> {
 		return this.http.get("https://swapi.co/api/starships/");
+	}
+
+	fetchPreviousShips(previousLink): Observable<Object> {
+		return this.http.get(previousLink);
+	}
+
+	fetchNextShips(nextLink): Observable<Object> {
+		return this.http.get(nextLink);
 	}
 }

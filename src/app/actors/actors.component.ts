@@ -18,8 +18,22 @@ export class ActorsComponent implements OnInit {
 
 	fetchActors() {
 		this.apiService.fetchActors().subscribe((data)=>{
-			this.actors = (data as any).results;
+			this.actors = data;
 		});
+	}
+
+	fetchPreviousActors(previousLink) {
+		this.actors = null;
+		this.apiService.fetchPreviousActors(previousLink).subscribe((data) => {
+			this.actors = data;
+		})
+	}
+
+	fetchNextActors(nextLink) {
+		this.actors = null;
+		this.apiService.fetchNextActors(nextLink).subscribe((data) => {
+			this.actors = data;
+		})
 	}
 
 	showModal(actor) {

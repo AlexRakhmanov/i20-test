@@ -1,11 +1,24 @@
 <div class="actors">
 		<div *ngIf="!actors" class="loader"></div>
 	
-		<ul class="actors__list">
-			<li class="actors__list--item" *ngFor="let actor of actors">
+		<ul *ngIf="actors" class="actors__list">
+			<li class="actors__list--item" *ngFor="let actor of actors.results">
 				<span (click)="showModal(actor)">{{ actor.name }}</span>
 			</li>
 		</ul>
+		
+		<div *ngIf="actors" class="actors__pagination">
+			<span 
+				(click)="fetchPreviousActors(actors.previous)"
+				*ngIf="actors.previous"
+				class="actors__pagination--previous"
+			><< Предыдущая страница</span>
+			<span 
+				(click)="fetchNextActors(actors.next)" 
+				*ngIf="actors.next" 
+				class="actors__pagination--next"
+			>Следующая страница >></span>
+		</div>
 	
 		<div *ngIf="currentActor" class="actors__modal-wrapper">
 			<article class="modal">

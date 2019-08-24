@@ -15,6 +15,17 @@
 	color: red;
 }
 
+.ships__pagination {
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-justify-content: space-between;
+	   -moz-box-pack: justify;
+	    -ms-flex-pack: justify;
+					justify-content: space-between;
+	cursor: pointer;
+}
 /* Модалка */
 
 .ships__modal-wrapper {

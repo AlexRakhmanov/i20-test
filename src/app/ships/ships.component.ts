@@ -18,8 +18,22 @@ export class ShipsComponent implements OnInit {
 
 	fetchShips() {
 		this.apiService.fetchShips().subscribe((data)=>{
-			this.ships = (data as any).results;
+			this.ships = data;
 		});
+	}
+
+	fetchPreviousShips(previousLink) {
+		this.ships = null;
+		this.apiService.fetchPreviousShips(previousLink).subscribe((data) => {
+			this.ships = data;
+		})
+	}
+
+	fetchNextShips(nextLink) {
+		this.ships = null;
+		this.apiService.fetchNextShips(nextLink).subscribe((data) => {
+			this.ships = data;
+		})
 	}
 
 	showModal(ship) {
