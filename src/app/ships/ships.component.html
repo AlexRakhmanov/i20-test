@@ -1,3 +1,34 @@
-<p>
-  ships works!
-</p>
+<div class="ships">
+	<div *ngIf="!ships" class="loader"></div>
+
+	<ul class="ships__list">
+		<li class="ships__list--item" *ngFor="let ship of ships">
+			<span (click)="showModal(ship)">{{ ship.name }}</span>
+		</li>
+	</ul>
+
+	<div *ngIf="currentShip" class="ships__modal-wrapper">
+    <article class="modal">
+      <header class="modal__header">
+				<h3 class="modal__header--title">{{ currentShip.name }}</h3>
+        <span
+          class="modal__button modal__button--close"
+          (click)="closeModal()"
+        >
+          X
+        </span>
+      </header>
+      <section class="modal__content">
+        <div class="modal__info">
+          <div class="modal__info--details">
+            <p>Модель: {{ currentShip.model }}</p>
+            <p>Производитель: {{ currentShip.manufacturer }}</p>
+          </div>
+        </div>
+        <div class="modal__description">
+					
+        </div>
+      </section>
+    </article>
+  </div>
+</div>

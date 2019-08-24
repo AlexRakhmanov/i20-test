@@ -2,7 +2,7 @@
 	<div *ngIf="!films" class="loader"></div>
 
 	<ul class="films__list">
-		<li class="films__list--item" *ngFor="let film of films.results">
+		<li class="films__list--item" *ngFor="let film of films">
 			<span (click)="showModal(film)">{{ film.title }}</span>
 		</li>
 	</ul>

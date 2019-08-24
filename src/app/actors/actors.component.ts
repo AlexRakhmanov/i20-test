@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-actors',
@@ -6,10 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./actors.component.css']
 })
 export class ActorsComponent implements OnInit {
+	actors;
+	currentActor;
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-  }
+		this.fetchActors();
+	}
+
+	fetchActors() {
+		this.apiService.fetchActors().subscribe((data)=>{
+			this.actors = (data as any).results;
+		});
+	}
+
+	showModal(actor) {
+		this.currentActor = actor;
+	}
+
+	closeModal() {
+		this.currentActor = null;
+	}
 
 }

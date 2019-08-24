@@ -18,7 +18,7 @@ export class FilmsComponent implements OnInit {
 
 	fetchFilms() {
 		this.apiService.fetchFilms().subscribe((data)=>{
-			this.films = data;
+			this.films = (data as any).results;
 		});
 	}
 

@@ -1,3 +1,33 @@
-<p>
-  actors works!
-</p>
+<div class="actors">
+		<div *ngIf="!actors" class="loader"></div>
+	
+		<ul class="actors__list">
+			<li class="actors__list--item" *ngFor="let actor of actors">
+				<span (click)="showModal(actor)">{{ actor.name }}</span>
+			</li>
+		</ul>
+	
+		<div *ngIf="currentActor" class="actors__modal-wrapper">
+			<article class="modal">
+				<header class="modal__header">
+					<h3 class="modal__header--title">{{ currentActor.name }}</h3>
+					<span
+						class="modal__button modal__button--close"
+						(click)="closeModal()"
+					>
+						X
+					</span>
+				</header>
+				<section class="modal__content">
+					<div class="modal__info">
+						<div class="modal__info--details">
+							<p>Пол: {{ currentActor.gender }}</p>
+							<p>Вес: {{ currentActor.mass }}</p>
+							<p>Рост: {{ currentActor.height }}</p>
+							<p>Год рождения: {{ currentActor.birth_year }}</p>
+						</div>
+					</div>
+				</section>
+			</article>
+		</div>
+	</div>
