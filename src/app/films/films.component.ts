@@ -9,6 +9,8 @@ import { ApiService } from '../api.service';
 export class FilmsComponent implements OnInit {
 	films;
 	currentFilm;
+	ships = [];
+
 
   constructor(private apiService: ApiService) { }
 
@@ -22,8 +24,19 @@ export class FilmsComponent implements OnInit {
 		});
 	}
 
+	fetchExactShip(link) {
+
+	}
+
 	showModal(film) {
 		this.currentFilm = film;
+		this.ships = [];
+		
+		this.currentFilm.starships.forEach((ship) => {
+			this.apiService.fetchExactShip(ship).subscribe((data) => {
+				this.ships.push(data);
+			})
+		});
 	}
 
 	closeModal() {

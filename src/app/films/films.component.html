@@ -20,19 +20,15 @@
       </header>
       <section class="modal__content">
         <div class="modal__info">
-          <div class="modal__info--details">
             <p>Режиссер: {{ currentFilm.director }}</p>
             <p>Год выпуска: {{ currentFilm.release_date.substr(0, 4) }}</p>
-          </div>
-        </div>
-        <div class="modal__description">
-					<p>Корабли:</p>
-
-					<ul>
-						<li *ngFor="let ship of currentFilm.starships">
-							{{ ship }}
-						</li>
-					</ul>
+            <p>Корабли:</p>
+            <p *ngIf="ships.length === 0">Загрузка...</p>
+            <ul>
+              <li *ngFor="let ship of ships">
+                {{ ship.name }}
+              </li>
+            </ul>
         </div>
       </section>
     </article>

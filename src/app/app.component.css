@@ -92,7 +92,6 @@
  
 .main__tabs > label:hover {
 	color: #888;
-	cursor: pointer;
 }
 /* Стили для активной вкладки */
 .main__tabs > input:checked + label {

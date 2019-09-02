@@ -36,4 +36,8 @@ export class ApiService {
 	fetchNextShips(nextLink): Observable<Object> {
 		return this.http.get(nextLink);
 	}
+
+	fetchExactShip(link): Observable<Object> {
+		return this.http.get(link);
+	}
 }

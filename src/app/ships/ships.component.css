@@ -5,14 +5,13 @@
 }
 
 .ships__list--item {
-	cursor: pointer;
 	-o-transition: color 0.3s;
 	-moz-transition: color 0.3s;
 	transition: color 0.3s;
 }
 
 .ships__list--item:hover {
-	color: red;
+  color: red;
 }
 
 .ships__pagination {
@@ -24,7 +23,6 @@
 	   -moz-box-pack: justify;
 	    -ms-flex-pack: justify;
 					justify-content: space-between;
-	cursor: pointer;
 }
 /* Модалка */
 
@@ -75,7 +73,6 @@
 }
     
 .modal__button--close {
-	cursor: pointer;
   display: inline-block;
   background-color: red;
   -webkit-align-self: flex-start;

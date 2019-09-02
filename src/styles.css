@@ -1,6 +1,8 @@
 * {
 	-moz-box-sizing: border-box;
-	     box-sizing: border-box;
+			 box-sizing: border-box;
+
+	cursor: url(assets/img/cursor.png), auto;
 }
 
 body {
