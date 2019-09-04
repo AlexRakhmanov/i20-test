@@ -58,6 +58,7 @@
           justify-content: space-between;
   border-bottom: 1px solid grey;
   margin-bottom: 10px;
+  max-height: 70px;
 }
 
 .modal__header--title {
@@ -74,7 +75,10 @@
   color: white;
 }
 
-
+.modal__content {
+  max-height: 380px;
+  overflow-y: scroll;
+}
 
 /* Прелоудер (спиннер) */
 

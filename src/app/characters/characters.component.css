@@ -1,34 +1,41 @@
 /* Список */
 
-.actors__list {
-  list-style: none;  
+.characters__list {
+	list-style: none;
 }
 
-.actors__list--item {	
+.characters__list--item {
 	-o-transition: color 0.3s;
 	-moz-transition: color 0.3s;
 	transition: color 0.3s;
 }
 
-.actors__list--item:hover {
+.characters__list--item:hover {
   color: red;
 }
 
+.characters__pagination {
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+}
 
-.actors__pagination {
-	display: -webkit-flex;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-justify-content: space-between;
-	   -moz-box-pack: justify;
-	    -ms-flex-pack: justify;
-					justify-content: space-between;
+.characters__pagination--next {
+  margin-left: auto;
+}
+
+/* iPhone 4 & 5 */
+@media screen and (max-width: 320px) {
+  .characters__list {
+    list-style: none;
+    font-size: 12px;
+    margin: 0;
+  }
 }
 
 /* Модалка */
 
-.actors__modal-wrapper {
+.characters__modal-wrapper {
 	position: fixed;
   width: 100vw;
   height: 100vh;
@@ -53,8 +60,10 @@
 .modal {
   background-color: white;
   padding: 10px;
-  max-width: 620px;
-	border-radius: 10px;
+  width: 320px;
+  height: 480px;
+  max-height: 480px;
+  border-radius: 10px;
 }	
 		
 .modal__header {
@@ -68,6 +77,7 @@
           justify-content: space-between;
   border-bottom: 1px solid grey;
   margin-bottom: 10px;
+  max-height: 70px;
 }
 
 .modal__header--title {
@@ -84,18 +94,9 @@
   color: white;
 }
 
-.modal__info {
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-	-webkit-justify-content: space-around;
-	    -ms-flex-pack: distribute;
-	        justify-content: space-around;
-	-webkit-align-items: center;
-	   -moz-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
+.modal__content {
+  max-height: 380px;
+  overflow-y: scroll;
 }
 
 /* Прелоудер (спиннер) */

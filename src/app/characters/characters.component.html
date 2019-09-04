@@ -1,0 +1,64 @@
+<div class="characters">
+		<div *ngIf="!characters" class="loader"></div>
+	
+		<ul *ngIf="characters" class="characters__list">
+			<li class="characters__list--item" *ngFor="let character of characters.results">
+				<span (click)="showModal(character)">{{ character.name }}</span>
+			</li>
+		</ul>
+		
+		<div *ngIf="characters" class="characters__pagination">
+			<span 
+				(click)="fetchPreviousCharacters(characters.previous)"
+				*ngIf="characters.previous"
+				class="characters__pagination--previous"
+			><< Предыдущая страница</span>
+			<span 
+				(click)="fetchNextCharacters(characters.next)" 
+				*ngIf="characters.next" 
+				class="characters__pagination--next"
+			>Следующая страница >></span>
+		</div>
+	
+		<div *ngIf="currentCharacter" class="characters__modal-wrapper">
+			<article class="modal">
+				<header class="modal__header">
+					<h3 class="modal__header--title">{{ currentCharacter.name }}</h3>
+					<span
+						class="modal__button modal__button--close"
+						(click)="closeModal()"
+					>
+						X
+					</span>
+				</header>
+				<section class="modal__content">
+					<div class="modal__info">
+						<div class="modal__info--details">
+							<p>Пол: {{ currentCharacter.gender }}</p>
+							<p>Вес: {{ currentCharacter.mass }}</p>
+							<p>Рост: {{ currentCharacter.height }}</p>
+							<p>Год рождения: {{ currentCharacter.birth_year }}</p>
+							<p>Цвет глаз: {{ currentCharacter.eye_color }}</p>
+							<p>Цвет кожи: {{ currentCharacter.skin_color }}</p>
+							<p>Цвет волос: {{ currentCharacter.hair_color }}</p>
+							<p>Раса: {{ race }}</p>
+							<p>Присутствует в фильмах:</p>
+							<p *ngIf="films.length === 0">Загрузка...</p>
+							<ul *ngIf="films.length !== 0">
+								<li *ngFor="let film of films">
+									{{ film.title }}
+								</li>
+							</ul>
+							<p>Пользовался кораблями:</p>
+							<p *ngIf="ships.length === 0">Нет данных</p>
+							<ul *ngIf="ships.length !== 0">
+								<li *ngFor="let ship of ships">
+									{{ ship.name }}
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+			</article>
+		</div>
+	</div>

@@ -20,15 +20,43 @@
       </header>
       <section class="modal__content">
         <div class="modal__info">
-            <p>Режиссер: {{ currentFilm.director }}</p>
-            <p>Год выпуска: {{ currentFilm.release_date.substr(0, 4) }}</p>
-            <p>Корабли:</p>
-            <p *ngIf="ships.length === 0">Загрузка...</p>
-            <ul>
-              <li *ngFor="let ship of ships">
-                {{ ship.name }}
-              </li>
-            </ul>
+          <p>Режиссер: {{ currentFilm.director }}</p>
+          <p>Год выпуска: {{ currentFilm.release_date.substr(0, 4) }}</p>
+          <p>Корабли:</p>
+          <p *ngIf="ships.length === 0">Загрузка...</p>
+          <ul *ngIf="ships.length !== 0">
+            <li *ngFor="let ship of ships">
+              {{ ship.name }}
+            </li>
+          </ul>
+          <p>Расы:</p>
+          <p *ngIf="species.length === 0">Загрузка...</p>
+          <ul *ngIf="species.length !== 0">
+            <li *ngFor="let race of species">
+              {{ race.name }}
+            </li>
+          </ul>
+          <p>Планеты:</p>
+          <p *ngIf="planets.length === 0">Загрузка...</p>
+          <ul *ngIf="planets.length !== 0">
+            <li *ngFor="let planet of planets">
+              {{ planet.name }}
+            </li>
+          </ul>
+          <p>Транспорт:</p>
+          <p *ngIf="vehicles.length === 0">Загрузка...</p>
+          <ul *ngIf="vehicles.length !== 0">
+            <li *ngFor="let vehicle of vehicles">
+              {{ vehicle.name }}
+            </li>
+          </ul>
+          <p>Персонажи:</p>
+          <p *ngIf="characters.length === 0">Загрузка...</p>
+          <ul *ngIf="characters.length !== 0">
+            <li *ngFor="let character of characters">
+              {{ character.name }}
+            </li>
+          </ul>
         </div>
       </section>
     </article>

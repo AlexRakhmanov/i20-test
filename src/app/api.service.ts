@@ -9,35 +9,55 @@ export class ApiService {
 
 	constructor(private http: HttpClient) { }
 	
-	fetchFilms(): Observable<Object> {
+	fetchFilms(): Observable<any> {
 		return this.http.get("https://swapi.co/api/films/");
 	}
 
-	fetchActors(): Observable<Object> {
+	fetchCharacters(): Observable<any> {
 		return this.http.get("https://swapi.co/api/people/");
 	}
 
-	fetchPreviousActors(previousLink): Observable<Object> {
-		return this.http.get(previousLink);
-	}
-
-	fetchNextActors(nextLink): Observable<Object> {
-		return this.http.get(nextLink);
-	}
-
-	fetchShips(): Observable<Object> {
+	fetchShips(): Observable<any> {
 		return this.http.get("https://swapi.co/api/starships/");
 	}
 
-	fetchPreviousShips(previousLink): Observable<Object> {
+	fetchPreviousCharacters(previousLink: string): Observable<any> {
 		return this.http.get(previousLink);
 	}
 
-	fetchNextShips(nextLink): Observable<Object> {
+	fetchNextCharacters(nextLink: string): Observable<any> {
 		return this.http.get(nextLink);
 	}
 
-	fetchExactShip(link): Observable<Object> {
-		return this.http.get(link);
+	fetchPreviousShips(previousLink: string): Observable<any> {
+		return this.http.get(previousLink);
+	}
+
+	fetchNextShips(nextLink: string): Observable<any> {
+		return this.http.get(nextLink);
+	}
+
+	fetchExactShip(ship: string): Observable<any> {
+		return this.http.get(ship);
+	}
+
+	fetchExactSpecies(species: string): Observable<any> {
+		return this.http.get(species);
+	}
+
+	fetchExactVehicle(vehicle: string): Observable<any> {
+		return this.http.get(vehicle);
+	}
+
+	fetchExactPlanet(planet: string): Observable<any> {
+		return this.http.get(planet);
+	}
+
+	fetchExactCharacter(character: string): Observable<any> {
+		return this.http.get(character);
+	}
+
+	fetchExactFilm(film: string): Observable<any> {
+		return this.http.get(film);
 	}
 }

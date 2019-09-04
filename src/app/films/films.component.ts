@@ -7,10 +7,13 @@ import { ApiService } from '../api.service';
   styleUrls: ['./films.component.css']
 })
 export class FilmsComponent implements OnInit {
-	films;
-	currentFilm;
-	ships = [];
-
+	currentFilm: any;
+	films:    	 any[] = [];
+	ships:    	 any[] = [];
+	species:  	 any[] = [];
+	planets:  	 any[] = [];
+	vehicles: 	 any[] = [];
+	characters:	 any[] = [];
 
   constructor(private apiService: ApiService) { }
 
@@ -20,26 +23,75 @@ export class FilmsComponent implements OnInit {
 
 	fetchFilms() {
 		this.apiService.fetchFilms().subscribe((data)=>{
-			this.films = (data as any).results;
-		});
+			this.films = data.results;
+		})
 	}
 
-	fetchExactShip(link) {
-
+	fetchExactShip(link: string) {
+		this.apiService.fetchExactShip(link).subscribe((data) => {
+			this.ships.push(data);
+		})
 	}
 
-	showModal(film) {
+	fetchExactPlanet(link: string) {
+		this.apiService.fetchExactPlanet(link).subscribe((data) => {
+			this.planets.push(data);
+		})
+	}
+
+	fetchExactSpecies(link: string) {
+		this.apiService.fetchExactSpecies(link).subscribe((data) => {
+			this.species.push(data);
+		})
+	}
+
+	fetchExactVehicle(link: string) {
+		this.apiService.fetchExactVehicle(link).subscribe((data) => {
+			this.vehicles.push(data);
+		})
+	}
+
+	fetchExactCharacter(link: string) {
+		this.apiService.fetchExactCharacter(link).subscribe((data) => {
+			this.characters.push(data);
+		})
+	}
+
+	showModal(film: any) {
 		this.currentFilm = film;
 		this.ships = [];
+		this.characters = [];
+		this.planets = [];
+		this.vehicles = [];
+		this.species = [];
 		
-		this.currentFilm.starships.forEach((ship) => {
-			this.apiService.fetchExactShip(ship).subscribe((data) => {
-				this.ships.push(data);
-			})
+		this.currentFilm.starships.forEach((ship: string) => {
+			this.fetchExactShip(ship);
+		});
+
+		this.currentFilm.species.forEach((race: string) => {
+			this.fetchExactSpecies(race);
+		});
+
+		this.currentFilm.planets.forEach((planet: string) => {
+			this.fetchExactPlanet(planet);
+		});
+
+		this.currentFilm.vehicles.forEach((vehicle: string) => {
+			this.fetchExactVehicle(vehicle);
+		});
+
+		this.currentFilm.characters.forEach((character: string) => {
+			this.fetchExactCharacter(character);
 		});
 	}
 
 	closeModal() {
 		this.currentFilm = null;
+		this.ships = [];
+		this.characters = [];
+		this.planets = [];
+		this.vehicles = [];
+		this.species = [];
 	}
 }

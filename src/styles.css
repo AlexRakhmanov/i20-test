@@ -26,6 +26,13 @@ body {
 	width: 250px;
 }
 
+/* iPhone 4 & 5 */
+@media screen and (max-width: 320px) {
+  .header__logo {
+		width: 210px;
+	}
+}
+
 /**********************/
 /********footer********/
 /**********************/
