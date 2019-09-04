@@ -33,13 +33,13 @@
       </header>
       <section class="modal__content">
         <div class="modal__info">
-          <div class="modal__info--details">
-            <p>Модель: {{ currentShip.model }}</p>
-            <p>Производитель: {{ currentShip.manufacturer }}</p>
-          </div>
-        </div>
-        <div class="modal__description">
-					
+          <p>Модель: {{ currentShip.model }}</p>
+					<p>Производитель: {{ currentShip.manufacturer }}</p>
+					<p>Класс корабля: {{ currentShip.starship_class }}</p>
+					<p>Длина корабля (в метрах): {{ currentShip.length }}</p>
+					<p>Численность команды: {{ currentShip.crew }}</p>
+					<p>Вместимость (пассажиров): {{ currentShip.passengers }}</p>
+					<p>Стоимость (в кредитах): {{ currentShip.cost_in_credits }}</p>
         </div>
       </section>
     </article>
