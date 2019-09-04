@@ -1,5 +1,9 @@
 <div class="characters">
-		<div *ngIf="!characters" class="loader"></div>
+		<div class="characters__search">
+			<input type="text" id="search-char" placeholder="Поиск">
+		</div>
+		<div *ngIf="!characters.results" class="loader"></div>
+		<div *ngIf="characters.results && characters.results.length === 0">Ничего не найдено</div>
 	
 		<ul *ngIf="characters" class="characters__list">
 			<li class="characters__list--item" *ngFor="let character of characters.results">

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { fromEvent } from 'rxjs';
+import { debounceTime, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-characters',
@@ -7,7 +9,7 @@ import { ApiService } from '../api.service';
   styleUrls: ['./characters.component.css']
 })
 export class CharactersComponent implements OnInit {
-	characters: any;
+	characters: any = [];
 	currentCharacter: any;
 	ships = [];
 	films = [];
@@ -18,6 +20,16 @@ export class CharactersComponent implements OnInit {
 
   ngOnInit() {
 		this.fetchCharacters();
+
+		fromEvent(document.getElementById('search-char'), 'keyup').pipe(
+			debounceTime(1000),
+			map(data => data.target)
+		).subscribe(val => {
+			this.characters = [];
+			this.apiService.searchCharacter((val as any).value).subscribe(data => {
+				this.characters = data;
+			})
+		});
 	}
 
 	fetchCharacters() {

@@ -1,5 +1,9 @@
 <div class="ships">
-	<div *ngIf="!ships" class="loader"></div>
+	<div class="ships__search">
+		<input type="text" id="search-ship" placeholder="Поиск">
+	</div>
+	<div *ngIf="!ships.results" class="loader"></div>
+	<div *ngIf="ships.results && ships.results.length === 0">Ничего не найдено</div>
 
 	<ul *ngIf="ships" class="ships__list">
 		<li class="ships__list--item" *ngFor="let ship of ships.results">

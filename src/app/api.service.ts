@@ -60,4 +60,16 @@ export class ApiService {
 	fetchExactFilm(film: string): Observable<any> {
 		return this.http.get(film);
 	}
+
+	searchCharacter(query: string): Observable<any> {
+		return this.http.get(`https://swapi.co/api/people/?search=${query}`)
+	}
+
+	searchFilm(query: string): Observable<any> {
+		return this.http.get(`https://swapi.co/api/films/?search=${query}`)
+	}
+
+	searchShip(query: string): Observable<any> {
+		return this.http.get(`https://swapi.co/api/starships/?search=${query}`)
+	}
 }

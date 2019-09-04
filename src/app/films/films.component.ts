@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { fromEvent } from 'rxjs';
+import { debounceTime, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-films',
@@ -8,7 +10,7 @@ import { ApiService } from '../api.service';
 })
 export class FilmsComponent implements OnInit {
 	currentFilm: any;
-	films:    	 any[] = [];
+	films:    	 any[] = null;
 	ships:    	 any[] = [];
 	species:  	 any[] = [];
 	planets:  	 any[] = [];
@@ -19,6 +21,17 @@ export class FilmsComponent implements OnInit {
 
   ngOnInit() {
 		this.fetchFilms();
+
+		fromEvent(document.getElementById('search-film'), 'keyup').pipe(
+			debounceTime(1000),
+			map(data => data.target)
+		).subscribe(val => {
+			this.films = null;
+
+			this.apiService.searchFilm((val as any).value).subscribe(data => {
+				this.films = data.results;
+			})
+		});
 	}
 
 	fetchFilms() {

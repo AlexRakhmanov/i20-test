@@ -1,5 +1,9 @@
 <div class="films">
+	<div class="films__search">
+		<input type="text" id="search-film" placeholder="Поиск">
+	</div>
 	<div *ngIf="!films" class="loader"></div>
+	<div *ngIf="films && films.length === 0">Ничего не найдено</div>
 
 	<ul class="films__list">
 		<li class="films__list--item" *ngFor="let film of films">
