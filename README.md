@@ -1,27 +1,17 @@
 # I20Test
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+Работа со [StarWarsAPI](https://swapi.co/).
 
-## Development server
+Перед запуском необходимо выполнить команду `npm install`.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Локальный сервер для разработки
 
-## Code scaffolding
+Команда `ng serve` запускает dev server на `http://localhost:4200/`. Приложение будет перезагружаться в браузере само после изменения исходников.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Сборка
 
-## Build
+Команда `ng build --prod` собирает проект для прода в папку `dist/`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## unit tests
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Команда `ng test` запускает тесты на [Karma](https://karma-runner.github.io).
