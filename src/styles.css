@@ -1,3 +1,7 @@
+/*
+  Общие стили
+*/
+
 * {
 	-moz-box-sizing: border-box;
 			 box-sizing: border-box;
@@ -12,6 +16,17 @@ body {
 		 background-size: cover;
 	margin: 0;
 	height: 100vh;
+}
+
+@media screen and (max-width: 425px) {
+  input[type="text"] {
+    width: 120px;
+  }
+
+  select {
+    font-size: 12px;
+    width: 85px;
+  }
 }
 
 /**********************/

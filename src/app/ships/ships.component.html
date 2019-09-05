@@ -1,8 +1,16 @@
 <div class="ships">
 	<div class="ships__search">
 		<input type="text" id="search-ship" placeholder="Поиск">
+		<label>
+      Фильтры:
+      <select (change)="filter($event)" class="ships__filter">
+        <option value="default" selected>По умолчанию</option>
+        <option value="lessten">Команда до 10 человек</option>
+        <option value="moreten">Команда более 10 человек</option>
+      </select>
+    </label>
 	</div>
-	<div *ngIf="!ships.results" class="loader"></div>
+	<div *ngIf="!ships || !ships.results" class="loader"></div>
 	<div *ngIf="ships.results && ships.results.length === 0">Ничего не найдено</div>
 
 	<ul *ngIf="ships" class="ships__list">

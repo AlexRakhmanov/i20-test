@@ -11,6 +11,8 @@ import { debounceTime, map } from 'rxjs/operators';
 export class ShipsComponent implements OnInit {
 	ships: any = [];
 	currentShip;
+	defaultFilter = [];
+	currentFilter: string;
 
   constructor(private apiService: ApiService) { }
 
@@ -18,13 +20,15 @@ export class ShipsComponent implements OnInit {
 		this.fetchShips();
 
 		fromEvent(document.getElementById('search-ship'), 'keyup').pipe(
-			debounceTime(1000),
+			debounceTime(500),
 			map(data => data.target)
 		).subscribe(val => {
 			this.ships = [];
 			
 			this.apiService.searchShip((val as any).value).subscribe(data => {
 				this.ships = data;
+				this.defaultFilter = data.results;
+				this.filter();
 			})
 		});
 	}
@@ -32,20 +36,26 @@ export class ShipsComponent implements OnInit {
 	fetchShips() {
 		this.apiService.fetchShips().subscribe((data)=>{
 			this.ships = data;
+			this.defaultFilter = data.results;
+			this.filter();
 		});
 	}
 
 	fetchPreviousShips(previousLink) {
-		this.ships = null;
+		this.ships = [];
 		this.apiService.fetchPreviousShips(previousLink).subscribe((data) => {
 			this.ships = data;
+			this.defaultFilter = data.results;
+			this.filter();
 		})
 	}
 
 	fetchNextShips(nextLink) {
-		this.ships = null;
+		this.ships = [];
 		this.apiService.fetchNextShips(nextLink).subscribe((data) => {
 			this.ships = data;
+			this.defaultFilter = data.results;
+			this.filter();
 		})
 	}
 
@@ -55,5 +65,29 @@ export class ShipsComponent implements OnInit {
 
 	closeModal() {
 		this.currentShip = null;
+	}
+
+	filter(event: any = null): void {
+		if (event !== null) {
+			this.currentFilter = event.target.value;
+		};
+		
+		switch(this.currentFilter) {
+			case "default":
+				this.ships.results = this.defaultFilter;
+				break;
+			case "lessten":
+				this.ships.results = [];
+				this.ships.results = this.defaultFilter.filter((ship) => {
+					return parseInt(ship.crew) < 10;
+				});
+				break;
+			case "moreten":
+				this.ships.results = [];
+				this.ships.results = this.defaultFilter.filter((ship) => {
+					return parseInt(ship.crew) >= 10;
+				});
+				break;
+		}
 	}
 }

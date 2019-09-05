@@ -1,8 +1,16 @@
 <div class="characters">
 		<div class="characters__search">
 			<input type="text" id="search-char" placeholder="Поиск">
+			<label>
+				Фильтры:
+				<select (change)="filter($event)" class="characters__filter">
+					<option value="default" selected>По умолчанию</option>
+					<option value="male">Мужчины</option>
+					<option value="female">Женщины</option>
+				</select>
+			</label>
 		</div>
-		<div *ngIf="!characters.results" class="loader"></div>
+		<div *ngIf="!characters || !characters.results" class="loader"></div>
 		<div *ngIf="characters.results && characters.results.length === 0">Ничего не найдено</div>
 	
 		<ul *ngIf="characters" class="characters__list">

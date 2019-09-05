@@ -10,12 +10,14 @@ import { debounceTime, map } from 'rxjs/operators';
 })
 export class FilmsComponent implements OnInit {
 	currentFilm: any;
-	films:    	 any[] = null;
-	ships:    	 any[] = [];
-	species:  	 any[] = [];
-	planets:  	 any[] = [];
-	vehicles: 	 any[] = [];
-	characters:	 any[] = [];
+	films: any[] = null;
+	defaultFilter: any[] = [];
+	ships: any[] = [];
+	species: any[] = [];
+	planets: any[] = [];
+	vehicles: any[] = [];
+	characters: any[] = [];
+	currentFilter: string;
 
   constructor(private apiService: ApiService) { }
 
@@ -23,13 +25,15 @@ export class FilmsComponent implements OnInit {
 		this.fetchFilms();
 
 		fromEvent(document.getElementById('search-film'), 'keyup').pipe(
-			debounceTime(1000),
+			debounceTime(500),
 			map(data => data.target)
 		).subscribe(val => {
 			this.films = null;
 
 			this.apiService.searchFilm((val as any).value).subscribe(data => {
 				this.films = data.results;
+				this.defaultFilter = data.results;
+				this.filter();
 			})
 		});
 	}
@@ -37,6 +41,7 @@ export class FilmsComponent implements OnInit {
 	fetchFilms() {
 		this.apiService.fetchFilms().subscribe((data)=>{
 			this.films = data.results;
+			this.defaultFilter = data.results;
 		})
 	}
 
@@ -106,5 +111,29 @@ export class FilmsComponent implements OnInit {
 		this.planets = [];
 		this.vehicles = [];
 		this.species = [];
+	}
+
+	filter(event: any = null): void {
+		if (event !== null) {
+			this.currentFilter = event.target.value;
+		};
+		
+		switch(this.currentFilter) {
+			case "default":
+				this.films = this.defaultFilter;
+				break;
+			case "old":
+				this.films = this.defaultFilter;
+				this.films = this.films.filter((film) => {
+					return parseInt(film.release_date.substr(0, 4)) < 2000;
+				});
+				break;
+			case "new":
+				this.films = this.defaultFilter;
+				this.films = this.films.filter((film) => {
+					return parseInt(film.release_date.substr(0, 4)) >= 2000;
+				});
+				break;
+		}
 	}
 }

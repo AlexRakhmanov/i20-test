@@ -13,8 +13,10 @@ export class CharactersComponent implements OnInit {
 	currentCharacter: any;
 	ships = [];
 	films = [];
+	defaultFilter = [];
 	vehicles = [];
 	race: any;
+	currentFilter: string;
 
   constructor(private apiService: ApiService) { }
 
@@ -22,12 +24,14 @@ export class CharactersComponent implements OnInit {
 		this.fetchCharacters();
 
 		fromEvent(document.getElementById('search-char'), 'keyup').pipe(
-			debounceTime(1000),
+			debounceTime(500),
 			map(data => data.target)
 		).subscribe(val => {
 			this.characters = [];
 			this.apiService.searchCharacter((val as any).value).subscribe(data => {
 				this.characters = data;
+				this.defaultFilter = data.results;
+				this.filter();
 			})
 		});
 	}
@@ -35,20 +39,25 @@ export class CharactersComponent implements OnInit {
 	fetchCharacters() {
 		this.apiService.fetchCharacters().subscribe((data)=>{
 			this.characters = data;
+			this.defaultFilter = data.results;
 		});
 	}
 
 	fetchPreviousCharacters(previousLink) {
-		this.characters = null;
+		this.characters = [];
 		this.apiService.fetchPreviousCharacters(previousLink).subscribe((data) => {
 			this.characters = data;
+			this.defaultFilter = data.results;
+			this.filter();
 		})
 	}
 
 	fetchNextCharacters(nextLink) {
-		this.characters = null;
+		this.characters = [];
 		this.apiService.fetchNextCharacters(nextLink).subscribe((data) => {
 			this.characters = data;
+			this.defaultFilter = data.results;
+			this.filter();
 		})
 	}
 
@@ -82,7 +91,7 @@ export class CharactersComponent implements OnInit {
 		this.ships = [];
 		this.films = [];
 		this.vehicles = [];
-		this.race = null;
+		this.race = 'n/a';
 
 		this.currentCharacter.starships.forEach((ship: string) => {
 			this.fetchExactShip(ship);
@@ -105,4 +114,27 @@ export class CharactersComponent implements OnInit {
 		this.currentCharacter = null;
 	}
 
+	filter(event: any = null): void {
+		if (event !== null) {
+			this.currentFilter = event.target.value;
+		}
+		
+		switch(this.currentFilter) {
+			case "default":
+				this.characters.results = this.defaultFilter;
+				break;
+			case "male":
+				this.characters.results = [];
+				this.characters.results = this.defaultFilter.filter((character) => {
+					return character.gender === "male";
+				});
+				break;
+			case "female":
+				this.characters.results = [];
+				this.characters.results = this.defaultFilter.filter((character) => {
+					return character.gender === "female";
+				});
+				break;
+		}
+	}
 }

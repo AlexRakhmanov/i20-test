@@ -1,6 +1,14 @@
 <div class="films">
 	<div class="films__search">
-		<input type="text" id="search-film" placeholder="Поиск">
+    <input type="text" id="search-film" placeholder="Поиск">
+    <label>
+      Фильтры:
+      <select (change)="filter($event)" class="films__filter">
+        <option value="default" selected>По умолчанию</option>
+        <option value="old">До 2000 года</option>
+        <option value="new">После 2000 года</option>
+      </select>
+    </label>
 	</div>
 	<div *ngIf="!films" class="loader"></div>
 	<div *ngIf="films && films.length === 0">Ничего не найдено</div>
